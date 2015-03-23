@@ -1,0 +1,21 @@
+{% extends 'drafter/_trifold.html' %}
+{% block title %}GameRumble - League Details{% endblock %}
+{% load drafter_extras %}
+
+{% block center_banner %}
+    <ul class="nav nav-tabs">
+        <li id="league-tab"><a href="{% url 'league' league.id %}">League</a></li>
+        {% if user|has_team:league_id %}
+{#            <li id="team-tab"><a href="{% url 'team_rosters' league.id user.id %}">Team</a></li>#}
+        {% else %}
+            <li id="team-tab" class="disabled"><a href="#">Team</a></li>
+        {% endif %}
+        <li id="players-tab" ><a href="{% url 'players' %}">Players</a></li>
+        <li id="scores-tab" ><a href="#">Scores</a></li>
+        <li id="transactions-tab" ><a href="#">Transactions</a></li>
+        {% if user|is_commish:league_id %}<li id="league-settings-tab"><a href="{% url 'league_settings' league_id %}">Commish Panel</a></li>{% endif %}
+    </ul>
+    <script>
+    $('#leagues-guide').addClass('active');
+    </script>
+{% endblock %}

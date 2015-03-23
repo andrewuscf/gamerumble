@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <meta charset="utf-8">
+	    <title>{% block title %}{% endblock %}</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	
+	    <!-- Styles -->
+	    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+	    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.js"></script>
+	    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.css"/>
+	    <link rel="stylesheet" type="text/css" href='{{STATIC_URL}}css/override.css'/>
+	
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="../assets/js/html5shiv.js"></script>
+	    <![endif]-->
+	    {% block head %}{% endblock %}
+    </head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <a href="/" class="navbar-brand">GameRumble</a>
+		    </div>
+		    <div class="navbar-collapse collapse" id="navbar-main">
+		      <ul class="nav navbar-nav">
+		        {% if not user.is_authenticated %}
+		          <li><a href="{% url 'new_user' %}" class=" btn-warning">Register</a></li>
+                {% else %}
+                <li id="leagues-guide">
+		          <a href="{% url 'leagues' %}">Leagues</a>
+		        </li>
+		        <li id="users-guide">
+		          <a href="{% url 'users' %}">Users</a>
+		        </li>
+		        {% endif %}
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        {% if user.is_authenticated %}
+		            <li><a href="{% url 'user' user.id %}">{{ user.username }}</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+	                <form class="navbar-form form-inline" method="post" action="{% url 'login' %}">
+		                {% csrf_token %}
+		                <div class="form-group">
+		                  <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username" class="form-control input-sm">
+		                </div>
+		                <div class="form-group">
+		                  <input id="id_password" name="password" type="password" placeholder="Password" class="form-control input-sm">
+		                </div>
+		                {% if form.errors %}
+                          <input type="submit" class="btn btn-sm btn-warning" value="Not Va!"/>
+                        {% else %}
+		                  <input type="submit" class="btn btn-sm btn-warning" />
+		                {% endif %}
+		                <input type="hidden" name="next" value="{{ next }}" />
+	                </form> 
+                {% endif %}
+		      </ul>
+		    </div>
+		  </div>
+		</div>
+		{% block content %}{% endblock %}
+	</body>
+</html>

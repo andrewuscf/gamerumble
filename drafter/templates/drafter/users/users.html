@@ -1,0 +1,35 @@
+{% extends 'drafter/_trifold.html' %}
+{% block title %}GameRumble - User List{% endblock %}
+
+{% block center_banner %}
+{% endblock %}
+
+{% block left_content %}
+{% endblock %}
+{% block center_content %}
+    <ul class="breadcrumb">
+        <li class="active">Users</li>
+    </ul>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Date Joined</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for user in users %}
+	                <tr>
+	                    <td><a href="{% url 'user' user.id %}">{{ user.username }}</a></td>
+	                    <td>{{ user.date_joined }}</td>
+	                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+    $('#users-guide').addClass('active');
+    </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'drafter/leagues/details/__details.html' %}
+
+{% block center_content %}
+    <ul class="nav nav-pills">
+        <li id="main-tab"><a href="{% url 'league_settings' league.id %}">Main</a></li>
+        <li id="requests-tab"><a href="{% url 'new_join_requests' league.id %}">Requests</a></li>
+        <li id="draft-settings-tab"><a href="{% url 'league_draft_settings' league.id %}">Draft</a></li>
+    </ul>
+    <ul class="breadcrumb">
+        <li><a href="{% url 'leagues' %}">Leagues</a></li>
+        <li><a href="{% url 'league' league.id %}">{{ league.name }}</a></li>
+        <li class="active">Commish Panel</li>
+    </ul>
+    <script>
+    $('#league-settings-tab').addClass('active');
+    </script>
+    {% block league_content %}{% endblock %}
+{% endblock %}

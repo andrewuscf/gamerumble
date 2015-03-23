@@ -1,0 +1,25 @@
+{% extends 'drafter/leagues/details/_team.html' %}
+{% block title %}Gamerumble - League Standings{% endblock %}
+
+{% block league_content %}
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Player name</th>
+                    <th>Pos.</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td>{{ league.id }}</td>
+                    <td>{{ league.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+    $('#roster-tab').addClass('active');
+    </script>
+{% endblock %}

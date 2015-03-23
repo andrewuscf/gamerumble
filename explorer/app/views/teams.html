@@ -1,0 +1,44 @@
+<section>
+	<h3>Players</h3>
+	<div class="player-filters">
+		<div class="player-filter">
+			<div class="player-filter-header">Week</div>
+			<div class="btn-group ">
+				<button type="button"
+						class="btn btn-primary"
+						ng-class="{ 'active': weekShown == 0 }"
+						ng-click="changeWeekShown(0)">All</button>
+				<button type="button"
+						class="btn btn-primary"
+						ng-class="{ 'active': weekShown == $index+1 }"
+						ng-click="changeWeekShown($index+1)"
+						ng-repeat="i in getNumber(sharedData.numberOfWeeksPlayed) track by $index">
+					{{$index+1}}
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<td ng-click="changeOrder(tableHeader.id)"
+				ng-repeat="tableHeader in tableHeaders">
+				{{tableHeader.title}}
+				<span class="glyphicon glyphicon glyphicon-sort" ng-hide="sortingInfo.by == tableHeader.id"></span>
+				<span ng-show="sortingInfo.by == tableHeader.id">
+					<span class="glyphicon" ng-class="tableHeader.glyphiconAlt" ng-show="sortingInfo.descending == true"></span>
+					<span class="glyphicon" ng-class="tableHeader.glyphicon" ng-show="sortingInfo.descending == false"></span>
+				</span>
+			</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="team in sharedData.sortedProTeams ">
+			<td class="team-name-cell"><div class="team-name" ng-class="team.shortName">{{team.shortName}}</div></td>
+			<td>{{team.statsByWeek[weekShown].totalPoints | number:2}}</td>
+			<td>{{team.statsByWeek[weekShown].pointsPerGame | number:2}}</td>
+		</tr>
+		</tbody>
+	</table>
+</section>

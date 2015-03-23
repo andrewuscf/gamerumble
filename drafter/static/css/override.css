@@ -1,0 +1,28 @@
+body {
+    padding-top: 60px;
+    /*padding-bottom: 40px;*/
+
+}
+
+.banner {
+    height: 43px;
+}
+
+.info-pane input {
+	width: 100%;
+}
+
+.breadcrumb {
+	margin-bottom: 0;
+	font-size: 12px;
+	height: 100%;
+}
+
+.home-background {
+    width: 1280px;
+    height: 580px;
+}
+
+.jumbotron {
+    padding: 0px;
+}

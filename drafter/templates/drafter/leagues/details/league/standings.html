@@ -1,0 +1,51 @@
+{% extends 'drafter/leagues/details/_league.html' %}
+{% block title %}GameRumble - League Standings{% endblock %}
+{% load drafter_extras %}
+
+{% block league_content %}
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Team name</th>
+                    <th>Team mngr</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for index, team in teams %}
+                <tr>
+                    <td>{{ index }}/{{ league.size }}</td>
+        			 <td>
+{#                    	<a href="{% url 'team_rosters' league.id user.id %}">{{ team.name }}</a>#}
+                    	{% if user|is_commish:league.id or user.id == manager.id %}
+	            			<form id="delete-form" onsubmit="return confirm(
+	            			'Are you sure you want to delete this team?');"
+                                  action="{% url 'delete_team' league.id user.id %}" method="post">
+			                {% csrf_token %}
+                                {{ team.name }}
+			                <input type="hidden" value="Delete"/>
+				            </form>
+				            <a href="" onclick="document.getElementById('delete-form').submit(); return false;">
+                                <span class="label label-danger">Delete</span></a>
+                            {% else %}
+                                {{ team.name }}
+			        	{% endif %}
+                    </td>
+                    <td><a href="{% url 'user' user.id %}">{{ team.manager }}</a></td>
+                    <td>{{ team.wins }}</td>
+                    <td>{{ team.losses }}</td>
+                    <td>{{ team.ties }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+    $('#standings-tab').addClass('active');
+    </script>
+{% endblock %}

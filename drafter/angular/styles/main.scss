@@ -1,0 +1,93 @@
+// bower:scss
+// endbower
+
+html {
+	display: block !important;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+body {
+	padding-top: 70px;
+}
+
+a {
+	cursor: pointer;
+}
+
+nav {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+thead {
+	td {
+		font-weight: bold;
+		font-size: 15px;
+		cursor: pointer;
+	}
+}
+.player-filters {
+}
+.player-filter-header {
+	text-align: center;
+	font-weight: bold;
+}
+.player-filter {
+	display: inline-block;
+	margin: 10px 5px;
+
+	button {
+		font-size: 10px;
+	}
+
+}
+
+.team-name-cell {
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+}
+.team-name {
+	background: url('../images/team-sprite.png') no-repeat top left;
+	width: 30px;
+	height: 30px;
+
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+
+	&.ALL { background-position: 0px 0px;  }
+	&.C9 { background-position: -32px 0px;  }
+	&.CLG { background-position: -64px 0px;  }
+	&.COL { background-position: -96px 0px;  }
+	&.CRS { background-position: -128px 0px;  }
+	&.CW { background-position: -160px 0px;  }
+	&.DIG { background-position: -192px 0px;  }
+	&.EG { background-position: -224px 0px;  }
+	&.FNC { background-position: -256px 0px;  }
+	&.GMB { background-position: -288px 0px;  }
+	&.LMQ { background-position: -320px 0px;  }
+	&.MIL { background-position: -352px 0px;  }
+	&.ROC { background-position: -384px 0px;  }
+	&.SHC { background-position: -416px 0px;  }
+	&.SK { background-position: -448px 0px;  }
+	&.TSM { background-position: -480px 0px;  }
+}
+.team-logo {
+	max-height: 30px;
+}
+
+@media screen and (min-width: 768px) {
+	.player-filter {
+		button {
+			font-size: 15px;
+		}
+
+	}
+}
+
+@import 'vendor/dark-theme';

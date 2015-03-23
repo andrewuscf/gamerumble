@@ -1,0 +1,16 @@
+{% extends 'drafter/_trifold.html' %}
+{% block title %}GameRumble - New League{% endblock %}
+
+
+{% block left_content %}
+{% endblock %}
+{% block center_content %}
+    <form action="{% url 'new_league' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+    <script>
+    $('#leagues-guide').addClass('active');
+    </script>
+{% endblock %}
